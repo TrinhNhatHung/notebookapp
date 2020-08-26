@@ -1,0 +1,122 @@
+ *{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+ } 
+.full-screen {
+    background-image: url(../image/5195ebb8c5f9772deda82aa2937134d3.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    width: 100%;
+}
+
+.login-box {
+    background-color: rgba(0, 0, 0,0.7);
+    width: 27%;
+    height: 75%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+}
+.fa-user-circle {
+     position: absolute;
+     left: 50%;
+     transform: translate(0,-50%) scale(6);
+}
+
+.head-login-box{
+   margin-top: 23%;
+}
+
+.head-login-box h1 {
+    font-weight: 300 ;
+    font-size: 40px;
+    text-align: center;
+    margin-top: -7%;
+}
+
+.head-login-box p {
+    text-align: center;
+    margin-top: 1%;
+    color: gray;
+}
+.login-self  {
+  position: relative;
+  margin-top: 10%;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.login-self .label{
+    margin-bottom: 5%;
+}
+
+.login-self input {
+    width: 100%;
+    background-color: rgba(0, 0, 0,0) ;
+    border: none;
+    border-bottom: gray 1px solid;
+    padding-bottom: 7px;
+    margin-bottom: 30px;
+    outline: none;
+    color: white;
+}
+.g-signin2 {
+    margin-top: 5%;
+}
+.abcRioButtonLightBlue {
+    width: 50% !important;
+    margin-left: 25%;
+    border-radius: 20px !important;
+}
+
+.has-account{
+  text-align: center;
+  margin-top: 8%;
+}
+.has-account p {
+    margin-bottom: 10px;
+}
+
+.has-account a { 
+    color: white;
+}
+
+.signup-btn {
+    width: 60%;
+    height: 36px;
+    margin-left: 20%;
+    margin-top: 10%;
+    border: none;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    opacity: 0.6;
+    font-size: 120%;
+    border-radius: 8px;
+}
+
+.sign-in-btn {
+    height: 36px;
+    width: 64%;
+    margin-left: 18%;
+    border: none;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    opacity: 0.6;
+    font-size: 120%;
+    border-radius: 25px;
+}
+
+.error {
+    color: gray;
+    font-size:13px;
+    position: absolute;
+    left: 50%;
+    top: 165px;
+    transform: translate(-50%,0);
+}
