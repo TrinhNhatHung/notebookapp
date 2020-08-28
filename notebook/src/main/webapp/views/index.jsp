@@ -45,9 +45,9 @@
 						<li><a href="#">Trợ giúp</a></li>
 					</ul>
 					<div class="seperate"></div>
-					<div class="login-gg" style="display: none;">
+					 <div class="login-gg" style="display: none;">
 						<div class="g-signin2" data-onsuccess="onSignIn"></div>
-					</div>
+					</div> 				
 					<a href="http://localhost:8080/notebook/login"
 						onclick="signOut();" class="signout-btn">Đăng xuất</a>
 				</div>

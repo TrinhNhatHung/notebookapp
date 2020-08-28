@@ -22,22 +22,27 @@
                 <h1>Notebook</h1>
                 <p>Ghi mọi thứ quan trọng</p>
             </div>
-            <form class="login-self">
+            <form class="login-self" action="http://localhost:8080/notebook/register" method="POST">
                 <p>Email</p>                
-                <input type="text" placeholder="Email hoặc username" required pattern="(?=.*[a-z])(?=.*[0-9]).{8,}" 
-                                   title ="Phải có ít nhất 8 kí tự gồm chữ và số">
-                <p>Máº­t kháº¥u</p>
-                <input type="text" placeholder="Mật khẩu" required pattern="(?=.*[a-z])(?=.*[0-9]).{8,}" 
-                                   title ="Phải có ít nhất 8 kí tự gồm chữ và số">
-                <button class = "signup-btn" onsubmit="handlerSubmit(event)">Sign up</button>
+                <input type="text" name="username" placeholder="Email hoặc username" required pattern="(?=.*[a-z])(?=.*[0-9]).{8,}" 
+                     spellcheck = "false" title ="Phải có ít nhất 8 kí tự gồm chữ và số" 
+                     style="margin-top:20px">
+                <p>Mật khẩu</p>
+                <input type="password" name="password" placeholder="Mật khẩu" required pattern="(?=.*[a-z])(?=.*[0-9]).{8,}" 
+                     spellcheck = "false" title ="Phải có ít nhất 8 kí tự gồm chữ và số"
+                     style="margin-top:20px">
+                 <% 
+                    if (request.getParameter("error")!=null){
+                    	out.print("<p style='color:red'>Tên đăng nhập hoặc mật khẩu đã tồn tại</p>");
+                    }
+                  %>
+                <button type="submit" class = "signup-btn" >Sign up</button>
             </form>
         </div>
     </div>
     <script src="/views/resource/js/script.js"></script>
     <script >
-        function handlerSubmit(event) {
-            
-        }
+        
     </script>
 </body>
 </html>

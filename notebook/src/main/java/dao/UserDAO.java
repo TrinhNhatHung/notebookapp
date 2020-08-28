@@ -63,14 +63,14 @@ public class UserDAO {
 			connection = getConnection();
 			PreparedStatement statement = null;
 			String sql = "INSERT INTO emailuser (name,email, image) VALUES (?,?,?)";
-			statement = connection.prepareStatement(sql,new String[]{"id","name","email","image"});
+			statement = connection.prepareStatement(sql, new String[] { "id", "name", "email", "image" });
 			statement.setString(1, user.getName());
 			statement.setString(2, user.getEmail());
 			statement.setString(3, user.getImage());
-			ResultSet resultSet =null ;
-            statement.execute();
-			resultSet=statement.getGeneratedKeys();
-			int id =0 ;
+			ResultSet resultSet = null;
+			statement.execute();
+			resultSet = statement.getGeneratedKeys();
+			int id = 0;
 			if (resultSet.next()) {
 				id = resultSet.getInt(1);
 			}
@@ -80,6 +80,23 @@ public class UserDAO {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+
+	public static int insertNormalUser(String username,String password) throws ClassNotFoundException, SQLException {
+		connection = getConnection();
+		PreparedStatement statement = null;
+		String sql = "INSERT INTO normaluser (name,password) VALUES (?,?)";
+		statement = connection.prepareStatement(sql, new String[] {"id"});
+		statement.setString(1, username);
+		statement.setString(2, password);
+		ResultSet resultSet =null;
+		statement.execute();
+		resultSet = statement.getGeneratedKeys();
+		int id = 0;
+		if (resultSet.next()) {
+			id = resultSet.getInt(1);
+		}
+		return id;
 	}
 
 	public static ResultSet querryNormalUserNote(String key) throws ClassNotFoundException, SQLException {
@@ -104,11 +121,12 @@ public class UserDAO {
 		return resultSet;
 	}
 
-	public static int insertNoteOfNormalUser(int isDeleted,int idUser,Note note) throws ClassNotFoundException, SQLException {
+	public static int insertNoteOfNormalUser(int isDeleted, int idUser, Note note)
+			throws ClassNotFoundException, SQLException {
 		connection = getConnection();
 		PreparedStatement statement = null;
 		String sql = "INSERT INTO note (title,content,notetime,isDeleted,normaluser_id) VALUES (?,?,?,?,?)";
-		statement = connection.prepareStatement(sql, new String[] {"id"});
+		statement = connection.prepareStatement(sql, new String[] { "id" });
 		statement.setString(1, note.getTitle());
 		statement.setString(2, note.getContent());
 		statement.setDate(3, note.getTimeNote());
@@ -117,19 +135,19 @@ public class UserDAO {
 		ResultSet resultSet = null;
 		statement.execute();
 		resultSet = statement.getGeneratedKeys();
-		int id=0;
+		int id = 0;
 		while (resultSet.next()) {
-			id= resultSet.getInt(1);
+			id = resultSet.getInt(1);
 		}
 		return id;
 	}
-	
+
 	public static int insertNoteOfEmailUser(int isDeleted, int idUser, Note note)
-			throws  SQLException, ClassNotFoundException {
+			throws SQLException, ClassNotFoundException {
 		connection = getConnection();
 		PreparedStatement statement = null;
 		String sql = "INSERT INTO note (title,content,notetime,isDeleted,emailuser_id) VALUES (?,?,?,?,?)";
-		statement = connection.prepareStatement(sql, new String[] {"id"});
+		statement = connection.prepareStatement(sql, new String[] { "id" });
 		statement.setString(1, note.getTitle());
 		statement.setString(2, note.getContent());
 		statement.setDate(3, note.getTimeNote());
@@ -138,21 +156,21 @@ public class UserDAO {
 		ResultSet resultSet = null;
 		statement.execute();
 		resultSet = statement.getGeneratedKeys();
-		int id=0;
+		int id = 0;
 		while (resultSet.next()) {
-			id= resultSet.getInt(1);
+			id = resultSet.getInt(1);
 		}
 		return id;
 	}
-	
+
 	public static int updateNote(Note note) throws ClassNotFoundException, SQLException {
 		connection = getConnection();
 		PreparedStatement statement = null;
-		String sql ="UPDATE note SET title= ?,content = ?, notetime = ? WHERE (id = ?)";
-		statement = connection.prepareStatement(sql,new String[] {"id"});
+		String sql = "UPDATE note SET title= ?,content = ?, notetime = ? WHERE (id = ?)";
+		statement = connection.prepareStatement(sql, new String[] { "id" });
 		statement.setString(1, note.getTitle());
 		statement.setString(2, note.getContent());
-		statement.setDate(3,note.getTimeNote());
+		statement.setDate(3, note.getTimeNote());
 		statement.setInt(4, note.getId());
 		statement.execute();
 		ResultSet resultSet = statement.getGeneratedKeys();
@@ -166,8 +184,8 @@ public class UserDAO {
 	public static int deleteNote(Note note) throws ClassNotFoundException, SQLException {
 		connection = getConnection();
 		PreparedStatement statement = null;
-		String sql ="UPDATE note SET isDeleted = '1' WHERE (id = ?)";
-		statement = connection.prepareStatement(sql,new String[] {"id"});
+		String sql = "UPDATE note SET isDeleted = '1' WHERE (id = ?)";
+		statement = connection.prepareStatement(sql, new String[] { "id" });
 		statement.setInt(1, note.getId());
 		statement.execute();
 		ResultSet resultSet = statement.getGeneratedKeys();
@@ -177,12 +195,12 @@ public class UserDAO {
 		}
 		return count;
 	}
-	
+
 	public static int deleteBin(Note note) throws ClassNotFoundException, SQLException {
 		connection = getConnection();
 		PreparedStatement statement = null;
-		String sql ="DELETE FROM note where id = ?";
-		statement = connection.prepareStatement(sql,new String[] {"id"});
+		String sql = "DELETE FROM note where id = ?";
+		statement = connection.prepareStatement(sql, new String[] { "id" });
 		statement.setInt(1, note.getId());
 		statement.execute();
 		ResultSet resultSet = statement.getGeneratedKeys();
