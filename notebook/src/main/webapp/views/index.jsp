@@ -48,7 +48,7 @@
 					 <div class="login-gg" style="display: none;">
 						<div class="g-signin2" data-onsuccess="onSignIn"></div>
 					</div> 				
-					<a href="http://localhost:8080/notebook/login"
+					<a href="<%=request.getContextPath()%>/login"
 						onclick="signOut();" class="signout-btn">Đăng xuất</a>
 				</div>
 			</div>
@@ -148,7 +148,7 @@
 			var id = '<%=session.getAttribute("id")%>'
 			noteJson += '-' + kind + '-' + id ;
 		    var xml = new XMLHttpRequest();
-            xml.open ("POST","http://localhost:8080/notebook/api-home-note",false);
+            xml.open ("POST","<%=request.getContextPath() %>/api-home-note",false);
             xml.setRequestHeader("Content-type", "application/json");
             xml.send(noteJson);
             param0.innerHTML = xml.responseText;
@@ -205,7 +205,7 @@
 				 }
 				 var noteJson = JSON.stringify(note);
 				 var xml = new XMLHttpRequest();
-		         xml.open ("PUT","http://localhost:8080/notebook/api-home-note",false);
+		         xml.open ("PUT","<%=request.getContextPath() %>/api-home-note",false);
 		         xml.setRequestHeader("Content-type", "application/json");
 		         xml.send(noteJson); 
 		         $('.note-article-active h6').text(titleArea);
@@ -222,7 +222,7 @@
         	}
         	var noteJson = JSON.stringify(note);
 			var xml = new XMLHttpRequest();
-	        xml.open ("DELETE","http://localhost:8080/notebook/api-home-note",false);
+	        xml.open ("DELETE","<%=request.getContextPath() %>/api-home-note",false);
 	        xml.setRequestHeader("Content-type", "application/json");
 	        xml.send(noteJson); 
 	        var thisElement = document.querySelector('.note-article-active');	        
@@ -252,7 +252,7 @@
         	}
         	var noteJson = JSON.stringify(note);
 			var xml = new XMLHttpRequest();
-	        xml.open ("DELETE","http://localhost:8080/notebook/api-home-bin",false);
+	        xml.open ("DELETE","<%=request.getContextPath() %>/api-home-bin",false);
 	        xml.setRequestHeader("Content-type", "application/json");
 	        xml.send(noteJson); 
 	        $('.bin-article-active').remove();

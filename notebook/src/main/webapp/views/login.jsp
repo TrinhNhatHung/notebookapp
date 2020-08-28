@@ -36,7 +36,7 @@
             </div>
             <div class="has-account">
                 <p>Bạn chưa có tài khoản ?</p>
-                <a href="http://localhost:8080/notebook/register">Tạo tài khoản</a>
+                <a href="<%=request.getContextPath() %>/register">Tạo tài khoản</a>
             </div>
         </div>
     </div>
@@ -54,10 +54,11 @@
 			}
 			var jSon = JSON.stringify(user);
             var xml = new XMLHttpRequest();
-            xml.open ("POST","http://localhost:8080/notebook/api-login-email",false);
+            xml.open ("POST","<%=request.getContextPath() %>/api-login-email",false);
             xml.setRequestHeader("Content-type", "application/json");
             xml.send(jSon);
-            location.href= "http://localhost:8080/notebook/home";
+            var id = xml.responseText;
+            location.href= '<%=request.getContextPath() %>/home?id=' + id + '&kind=2';
         }
         $('form').submit (function (){
         	var username = document.getElementsByClassName('username')[0].value;
@@ -68,13 +69,13 @@
              }
              var jSon = JSON.stringify(user);
              var xml = new XMLHttpRequest();
-             xml.open ("POST","http://localhost:8080/notebook/api-login-normal",false);
+             xml.open ("POST","<%=request.getContextPath() %>/api-login-normal",false);
              xml.setRequestHeader("Content-type", "application/json");
              xml.send(jSon);
              var regex = /http/;
              var message = xml.responseText; 
              if (regex.test(message) == true){
-            	 var URL = message.substring(1,message.length-1);
+            	 var URL = message.substring(6,message.length-1);
                  location.href=URL;
              } else {
             	 document.getElementsByClassName('error')[0].innerHTML = message ; 

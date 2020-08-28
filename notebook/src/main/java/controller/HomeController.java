@@ -18,6 +18,8 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.UserDAO;
+import model.EmailUser;
+import model.NormalUser;
 import model.Note;
 
 @WebServlet(urlPatterns = "/home")
@@ -32,12 +34,22 @@ public class HomeController extends HttpServlet {
 		ResultSet resultSet =null;
 		List<Note> list = new ArrayList<Note>();
 		try {
-			if (session.getAttribute("kind").equals(1)) {
-				key = (String) session.getAttribute("username");		
-				resultSet = UserDAO.querryNormalUserNote(key);			
+			if (req.getParameter("kind").equals("1")) {
+				NormalUser normalUser = UserDAO.findNormalUser(Integer.parseInt(req.getParameter("id")));
+				key = normalUser.getName();	
+				resultSet = UserDAO.querryNormalUserNote(key);		
+				session.setAttribute("kind", 1);
+				session.setAttribute("id", Integer.parseInt(req.getParameter("id")));
+				session.setAttribute("username", normalUser.getName());
 			} else {
-				key = (String) session.getAttribute("email");
+				EmailUser emailUser = UserDAO.findEmailUser(Integer.parseInt(req.getParameter("id")));
+				key = emailUser.getEmail();
 				resultSet = UserDAO.querryEmailUserNote(key);
+				session.setAttribute("kind", 2);
+				session.setAttribute("id", Integer.parseInt(req.getParameter("id")));
+				session.setAttribute("username", emailUser.getName());
+				session.setAttribute("email", emailUser.getEmail());
+				session.setAttribute("image", emailUser.getImage());
 			}
 			while (resultSet.next()) {
 				Note note = new Note();

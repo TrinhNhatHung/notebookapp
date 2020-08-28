@@ -22,7 +22,7 @@
                 <h1>Notebook</h1>
                 <p>Ghi mọi thứ quan trọng</p>
             </div>
-            <form class="login-self" action="http://localhost:8080/notebook/register" method="POST">
+            <form class="login-self" action="<%=request.getContextPath() %>/register" method="POST">
                 <p>Email</p>                
                 <input type="text" name="username" placeholder="Email hoặc username" required pattern="(?=.*[a-z])(?=.*[0-9]).{8,}" 
                      spellcheck = "false" title ="Phải có ít nhất 8 kí tự gồm chữ và số" 

@@ -20,6 +20,20 @@ public class UserDAO {
 		String url = "jdbc:mysql://localhost:3306/notebookapp";
 		return DriverManager.getConnection(url, "root", "813564");
 	}
+	
+	public static NormalUser findNormalUser(int id) throws ClassNotFoundException, SQLException {
+		connection = getConnection();
+		NormalUser user = new NormalUser();
+		PreparedStatement statement = null;
+		String sql = "SELECT name FROM normaluser where id = ?";
+		statement = connection.prepareStatement(sql);
+		statement.setInt(1, id);
+		ResultSet resultSet = statement.executeQuery();
+		while (resultSet.next()) {			
+			user.setName(resultSet.getString("name"));					
+		}
+		return user;
+	}
 
 	public static List<NormalUser> allNormalUser() throws ClassNotFoundException, SQLException {
 		List<NormalUser> list = new ArrayList<NormalUser>();
@@ -37,6 +51,22 @@ public class UserDAO {
 			list.add(user);
 		}
 		return list;
+	}
+	
+	public static EmailUser findEmailUser(int id) throws ClassNotFoundException, SQLException {
+		connection = getConnection();
+	    EmailUser user = new EmailUser();
+		PreparedStatement statement = null;
+		String sql = "SELECT name,email,image FROM emailuser where id = ?";
+		statement = connection.prepareStatement(sql);
+		statement.setInt(1, id);
+		ResultSet resultSet = statement.executeQuery();
+		while (resultSet.next()) {			
+			user.setName(resultSet.getString("name"));	
+			user.setEmail(resultSet.getString("email"));
+			user.setImage(resultSet.getString("image"));
+		}
+		return user;
 	}
 
 	public static List<EmailUser> allEmailUser() throws ClassNotFoundException, SQLException {

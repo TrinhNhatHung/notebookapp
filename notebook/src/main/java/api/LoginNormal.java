@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -61,12 +60,7 @@ public class LoginNormal extends HttpServlet {
 				message = "Sai mật khẩu";
 				mapper.writeValue(resp.getOutputStream(), message);
 			} else {
-				HttpSession session = req.getSession();
-				session.setAttribute("kind",1);
-				session.setAttribute("id", id);
-				session.setAttribute("username", requestUser.getName());
-				session.setAttribute("image", "");
-				message = "http://localhost:8080/notebook/home";
+				message = "http" + "/home?id=" + id + "&kind=1";
 				mapper.writeValue(resp.getOutputStream(), message);
 			}
 		} catch (ClassNotFoundException | SQLException e) {

@@ -10,7 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.UserDAO;
 import model.EmailUser;
@@ -51,12 +52,7 @@ public class LoginEmail extends HttpServlet {
 		if (status ==0) {
 			id = UserDAO.insertEmailUser(requestUser);
 		} 
-		HttpSession session = req.getSession();
-		session.setAttribute("kind",2);
-		session.setAttribute("id", id);
-		session.setAttribute("username", requestUser.getName());
-		session.setAttribute("image", requestUser.getImage());
-		session.setAttribute("email", requestUser.getEmail());
-		
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(resp.getOutputStream(), id);
 	}
 }
