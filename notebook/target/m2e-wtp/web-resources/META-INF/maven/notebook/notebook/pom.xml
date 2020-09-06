@@ -9,8 +9,7 @@
 	<name>notebook</name>
 	<description>write-anything</description>
 
-	<properties>
-		
+	<properties>		
 	</properties>
 
 	<dependencies>
@@ -66,18 +65,5 @@
 			<version>1.13.1</version>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				
-				<configuration>
-					
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
